@@ -3,12 +3,11 @@
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BitolaEvents.Application\BitolaEvents.Application.csproj" />
-    <ProjectReference Include="..\BitolaEvents.Core\BitolaEvents.Core.csproj" />
+    <ProjectReference Include="..\BitolaCityEvents.Core\BitolaCityEvents.Core.csproj" />
   </ItemGroup>
 
 </Project>

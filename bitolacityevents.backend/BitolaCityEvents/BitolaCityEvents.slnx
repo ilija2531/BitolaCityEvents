@@ -1,6 +1,6 @@
 <Solution>
   <Project Path="BitolaCityEvents.API/BitolaCityEvents.API.csproj" />
-  <Project Path="BitolaEvents.Application/BitolaEvents.Application.csproj" />
-  <Project Path="BitolaEvents.Core/BitolaEvents.Core.csproj" />
-  <Project Path="BitolaEvents.DataAccess/BitolaEvents.DataAccess.csproj" />
+  <Project Path="BitolaCityEvents.Application/BitolaCityEvents.Application.csproj" />
+  <Project Path="BitolaCityEvents.Core/BitolaCityEvents.Core.csproj" />
+  <Project Path="BitolaCityEvents.DataAccess/BitolaCityEvents.DataAccess.csproj" />
 </Solution>
