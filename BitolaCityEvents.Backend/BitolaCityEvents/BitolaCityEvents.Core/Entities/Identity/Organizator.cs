@@ -1,25 +1,23 @@
-﻿using BitolaCityEvents.Core.Entities.Identity.Media;
-using Microsoft.AspNetCore.Identity;
+﻿using BitolaCityEvents.Core.Entities.Identity.Common.Abstractions;
+using BitolaCityEvents.Core.Entities.Identity.Media;
 
 namespace BitolaCityEvents.Core.Entities.Identity
 {
-    public class Organizator : IdentityUser<Guid>
+    public class Organizator : Account
     {
         public Organizator() : base()
         {
         }
 
         public Organizator(string username, string organizatorName, IEnumerable<Event> events = null,
-            OrganizatorPhoto photo = null)
-            : base(username)
+            AccountPhoto photo = null)
+            : base(username, photo)
         {
             OrganizatorName = organizatorName;
             Events = events;
-            Photo = photo;
         }
 
         public string OrganizatorName { get; set; }
         public IEnumerable<Event> Events { get; set; }
-        public OrganizatorPhoto Photo { get; set; }
     }
 }
