@@ -18,8 +18,8 @@ interface BounceCardsProps {
 export default function BounceCards({
   className = '',
   images = [],
-  containerWidth = 400,
-  containerHeight = 400,
+  containerWidth = 800,
+  containerHeight = 800,
   animationDelay = 0.5,
   animationStagger = 0.06,
   easeType = 'elastic.out(1, 0.8)',
@@ -147,7 +147,7 @@ export default function BounceCards({
       {images.map((src, idx) => (
         <div
           key={idx}
-          className={`card card-${idx} absolute w-50 aspect-square border-8 border-white rounded-[30px] overflow-hidden cursor-pointer touch-none`}
+          className={`card card-${idx} absolute w-60 aspect-square border-8 border-white rounded-[30px] overflow-hidden cursor-pointer touch-none`}
           style={{
             boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
             transform: transformStyles[idx] || 'none'
