@@ -2,6 +2,7 @@
 using BitolaCityEvents.DataAccess.Config.Entities.Common.Abstractions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using BitolaCityEvents.Core.Enums;
 
 namespace BitolaCityEvents.DataAccess.Config.Entities
 {
@@ -15,11 +16,12 @@ namespace BitolaCityEvents.DataAccess.Config.Entities
 
             builder.Property(p => p.Title).HasMaxLength(50).IsRequired();
             builder.Property(p => p.Location).HasMaxLength(50).IsRequired();
+            builder.Property(p => p.Categoty).HasMaxLength(50).IsRequired();
             builder.Property(p => p.Description).IsRequired(false);
             builder.Property(p => p.StartTime).IsRequired();
             builder.Property(p => p.EndTime).IsRequired();
             builder.Property(p => p.PostedOn).IsRequired();
-            builder.Property(p => p.Status).HasConversion<string>().IsRequired();
+            builder.Property(p => p.Status).HasDefaultValue(EventStatus.NotStarted).HasConversion<string>().IsRequired();
 
             builder.HasOne(o => o.Organizator)
                 .WithMany(e => e.Events)

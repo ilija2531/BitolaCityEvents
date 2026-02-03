@@ -12,7 +12,7 @@ namespace BitolaCityEvents.Core.Entities
         {
         }
 
-        public Event(Guid id, string title, string description, string location, DateTime startTime, DateTime endTime, 
+        public Event(Guid id, string title, string description, string category, string location, DateTime startTime, DateTime endTime, 
             Guid organizatorId, Organizator organizator = null, EventStatus status = EventStatus.NotStarted, 
             IEnumerable<EventPhoto> photos = null, IEnumerable<UserSavedEvents> userSaves = null, 
             IEnumerable<UserGoingEvents> usersGoing = null)
@@ -20,6 +20,7 @@ namespace BitolaCityEvents.Core.Entities
         {
             Title = title;
             Description = description;
+            Categoty = category;
             Location = location;
             StartTime = startTime;
             EndTime = endTime;
@@ -34,6 +35,7 @@ namespace BitolaCityEvents.Core.Entities
 
         public string Title { get; set; }
         public string Description { get; set; }
+        public string Categoty { get; set; }
         public string Location { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
