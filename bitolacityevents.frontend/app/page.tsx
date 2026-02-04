@@ -95,6 +95,7 @@ export default function Home() {
 
        
         <div className="relative z-10 flex flex-col min-h-screen">
+          <img src="/images/logo.png" alt="Bitolacity Events Logo" className="w-100 h-70 mt-10 object-cover items-center mx-auto" />
           <Header />
           <div className="flex-1 flex items-center justify-center">
             <BounceCards

@@ -6,13 +6,7 @@ export default function Header() {
   return (
     <header className="relative py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Decorative top accent */}
-          <div className="flex justify-center mb-8">
-            <div className="h-1 w-20 bg-linear-to-r from-transparent via-white to-transparent opacity-60"></div>
-          </div>
-
-          {/* Main heading with animation */}
-          <h1 className='text-5xl md:text-6xl font-bold text-white mb-6 animate-fade-in-down drop-shadow-lg'>
+          <h1 className='text-5xl md:text-6xl font-bold text-white mb-5 animate-fade-in-down drop-shadow-lg'>
             Welcome to Bitola City Events
           </h1>
           
