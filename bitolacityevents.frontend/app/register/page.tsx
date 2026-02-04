@@ -292,7 +292,7 @@ export default function Register() {
         </div>
 
         {/* Footer Text */}
-        <div className="text-center mt-3 text-white/80">
+        <div className="text-center mt-0.5 text-white/80">
           {!isLogin ? (
             <p>Already have an account? <button onClick={() => setIsLogin(true)} className="text-indigo-300 hover:text-indigo-200 font-semibold transition-colors">Sign in</button></p>
           ) : (
