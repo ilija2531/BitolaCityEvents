@@ -241,3 +241,32 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+/* Footer scroll animations: when footer is visible, add `footer-visible` to body */
+.animate-on-footer {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 700ms ease, transform 700ms ease;
+}
+body.footer-visible .animate-on-footer {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Gentle page lift and glow when footer is reached */
+body.footer-visible #__next {
+  transform: translateY(-8px);
+  transition: transform 700ms ease;
+}
+
+/* Footer slide-up animation */
+.footer-animate {
+  opacity: 0;
+  transform: translateY(40px);
+  will-change: transform, opacity;
+  transition: transform 700ms cubic-bezier(.2,.9,.2,1), opacity 700ms ease;
+}
+body.footer-visible .footer-animate {
+  opacity: 1;
+  transform: translateY(0);
+}
