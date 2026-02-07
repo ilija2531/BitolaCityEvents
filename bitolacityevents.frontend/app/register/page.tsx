@@ -80,7 +80,7 @@ export default function Register() {
           </div>
 
           {/* Form Container */}
-          <form className="p-8 space-y-4">
+          <form className="p-8 space-y-5">
             {/* Sign Up Fields */}
             {!isLogin && (
               <>
@@ -99,7 +99,8 @@ export default function Register() {
                         onChange={(e) => setUserRole(e.target.value)}
                         className="w-4 h-4 cursor-pointer"
                       />
-                      <span className="ml-2 text-white/90 text-sm">👤 User</span>
+                      <img src="/images/user.png" alt="User Icon" className="w-4 h-4 ml-2" />
+                      <span className="ml-2 text-white/90 text-sm"> User</span>
                     </label>
                     <label className="flex items-center cursor-pointer">
                       <input
@@ -110,7 +111,8 @@ export default function Register() {
                         onChange={(e) => setUserRole(e.target.value)}
                         className="w-4 h-4 cursor-pointer"
                       />
-                      <span className="ml-2 text-white/90 text-sm">📋 Organizer</span>
+                      <img src="/images/organizer2.png" alt="Organizer Icon" className="w-4 h-4 ml-2" />
+                      <span className="ml-2 text-white/90 text-sm"> Organizer</span>
                     </label>
                     <label className="flex items-center cursor-pointer">
                       <input
@@ -121,7 +123,8 @@ export default function Register() {
                         onChange={(e) => setUserRole(e.target.value)}
                         className="w-4 h-4 cursor-pointer"
                       />
-                      <span className="ml-2 text-white/90 text-sm">🔐 Admin</span>
+                      <img src="/images/admin2.png" alt="Admin Icon" className="w-4 h-4 ml-2" />
+                      <span className="ml-2 text-white/90 text-sm"> Admin</span>
                     </label>
                   </div>
                 </div>
@@ -274,31 +277,34 @@ export default function Register() {
             </div>
 
             {/* Social Buttons */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid gap-4">
               <button
                 type="button"
                 className="py-2.5 px-4 rounded-lg bg-white/10 border border-white/20 text-white hover:bg-white/15 transition-all flex items-center justify-center gap-2 font-medium"
               >
-                <span>🔵</span> Google
+                <img src="/images/google.png" alt="Google Icon" className="w-5 h-5" />
+                Google
               </button>
               <button
                 type="button"
                 className="py-2.5 px-4 rounded-lg bg-white/10 border border-white/20 text-white hover:bg-white/15 transition-all flex items-center justify-center gap-2 font-medium"
               >
-                <span>🦕</span> GitHub
+                <img src="/images/facebook.png" alt="Facebook Icon" className="w-5 h-5" />  
+                Facebook
               </button>
             </div>
           </form>
-        </div>
+        
 
         {/* Footer Text */}
-        <div className="text-center mt-0.5 text-white/80">
+        <div className="text-center mt-2 text-white/80">
           {!isLogin ? (
             <p>Already have an account? <button onClick={() => setIsLogin(true)} className="text-indigo-300 hover:text-indigo-200 font-semibold transition-colors">Sign in</button></p>
           ) : (
             <p>Don't have an account? <button onClick={() => setIsLogin(false)} className="text-indigo-300 hover:text-indigo-200 font-semibold transition-colors">Sign up</button></p>
           )}
-        </div>
+        </div> 
+        </div>       
             </div>
           </div>
         </div>

@@ -63,7 +63,7 @@ export default function Navbar() {
       </form>
 
       {/* Right Sign Up */}
-      <Link href="/register">
+      <Link href="/register" className="hover:text-indigo-200 transition-colors duration-300 hover:scale-110 transform">
         <button className="relative group px-6 py-2.5 bg-gradient-to-r from-indigo-400 to-purple-500 text-white font-bold rounded-lg hover:from-indigo-500 hover:to-purple-600 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl overflow-hidden border-white/80 border">
           {/* Animated background shine effect */}
           <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300 transform -skew-x-12 group-hover:skew-x-12"></div>
