@@ -2,6 +2,7 @@
 
 import BounceCards from './components/BounceCards/BounceCards'
 import Header from './components/Header'
+import FactsCarousel from './components/FactsCarousel'
 import { Separator } from '@/components/ui/separator';
 import { useRef, useEffect, useState } from 'react';
 
@@ -28,11 +29,6 @@ const useTypeEffect = (text: string, isVisible: boolean, speed: number = 30) => 
   }, [isVisible, text, speed]);
 
   return displayedText;
-};
-
-const TypingText = ({ text, isVisible }: { text: string; isVisible: boolean }) => {
-  const displayedText = useTypeEffect(text, isVisible);
-  return <>{displayedText}</>
 };
 
 const images = [
@@ -114,31 +110,7 @@ export default function Home() {
           <Separator className="my-8 border-t  w-3/4 mx-auto" />
           
         <div className="w-full px-4 mb-8" ref={scrollRef}>
-          <div className={`max-w-8xl mx-auto bg-white/10 rounded-2xl overflow-hidden flex flex-col md:flex-row items-center transition-all duration-1000 ${
-            isVisible 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-10'
-          }`}>
-            <div className={`md:w-1/2 w-full h-64 md:h-auto transition-all duration-1000 delay-100 ${
-              isVisible 
-                ? 'opacity-100 translate-x-0' 
-                : 'opacity-0 -translate-x-10'
-            }`}>
-              <img src="/images/bitola6.jpg" alt="Bitola streets" className="w-2xl h-lg object-cover" />
-            </div>
-            <div className={`md:w-1/2 w-full p-8 text-white transition-all duration-1000 delay-200 flex items-center justify-center ${
-              isVisible 
-                ? 'opacity-100 translate-x-0' 
-                : 'opacity-0 translate-x-10'
-            }`}>
-              <p className="text-2xl md:text-3xl leading-relaxed font-light">
-                <TypingText
-                  text="Bitola is a city in Macedonia with a rich history and cultural heritage. Throughout the centuries, it has been influenced by various civilizations and has preserved its unique identity. With its beautiful architecture, vibrant arts scene, and warm hospitality, Bitola offers a captivating experience for visitors."
-                  isVisible={isVisible}
-                />
-              </p>
-            </div>
-          </div>
+          <FactsCarousel isVisible={isVisible} />
         </div>
         
         </div>
