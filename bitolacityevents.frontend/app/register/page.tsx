@@ -192,7 +192,8 @@ export default function Register() {
                         onChange={(e) => setUserRole(e.target.value)}
                         className="w-4 h-4 cursor-pointer"
                       />
-                      <span className="ml-2 text-white/90 text-sm">👤 User</span>
+                      <img src="/images/user.png" alt="User Icon" className="w-4 h-4 ml-2" />
+                      <span className="ml-2 text-white/90 text-sm"> User</span>
                     </label>
                     <label className="flex items-center cursor-pointer">
                       <input
@@ -203,7 +204,8 @@ export default function Register() {
                         onChange={(e) => setUserRole(e.target.value)}
                         className="w-4 h-4 cursor-pointer"
                       />
-                      <span className="ml-2 text-white/90 text-sm">📋 Organizer</span>
+                      <img src="/images/organizer2.png" alt="Organizer Icon" className="w-4 h-4 ml-2" />
+                      <span className="ml-2 text-white/90 text-sm"> Organizer</span>
                     </label>
                     <label className="flex items-center cursor-pointer">
                       <input
@@ -214,7 +216,8 @@ export default function Register() {
                         onChange={(e) => setUserRole(e.target.value)}
                         className="w-4 h-4 cursor-pointer"
                       />
-                      <span className="ml-2 text-white/90 text-sm">🔐 Admin</span>
+                      <img src="/images/admin2.png" alt="Admin Icon" className="w-4 h-4 ml-2" />
+                      <span className="ml-2 text-white/90 text-sm"> Admin</span>
                     </label>
                   </div>
                 </div>

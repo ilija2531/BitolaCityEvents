@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useEffect, useRef } from 'react'
+import Link from 'next/link'
 
 export default function Footer() {
   const year = new Date().getFullYear()
@@ -68,10 +69,10 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold">Useful Links</h4>
             <ul className="mt-3 space-y-2 text-sm text-indigo-100">
-              <li><a className="hover:text-white" href="#">Home</a></li>
-              <li><a className="hover:text-white" href="#">Events</a></li>
-              <li><a className="hover:text-white" href="#">Explore Events</a></li>
-              <li><a className="hover:text-white" href="#">Create Event</a></li>
+              <li><Link className="hover:text-white" href="/">Home</Link></li>
+              <li><Link className="hover:text-white" href="/events">Events</Link></li>
+              <li><Link className="hover:text-white" href="/events">Explore Events</Link></li>
+              <li><Link className="hover:text-white" href="#">Create Event</Link></li>
             </ul>
           </div>
 
