@@ -20,17 +20,17 @@ const carouselItems: CarouselItem[] = [
     alt: 'Bitola streets'
   },
   {
-    image: '/images/bitola1.jpg',
+    image: '/images/bitola7.jpg',
     fact: 'Known as the "City of Consuls," Bitola was home to 18 consulates in the early 1900s, making it a major center of international trade and diplomacy.',
     alt: 'Bitola architecture'
   },
   {
     image: '/images/bitola2.jpg',
-    fact: 'The Semeneia School, founded in 1824, was one of the first secular educational institutions in the Ottoman Empire and played a crucial role in the National Awakening.',
-    alt: 'Bitola landmarks'
+    fact: 'Bitola has a long sporting tradition — home to clubs like FK Pelister, RK Pelister and hosts regional athletics and basketball events that bring the community together.',
+    alt: 'Bitola sports'
   },
   {
-    image: '/images/bitola3.jpg',
+    image: '/images/bitola8.jpg',
     fact: 'Bitola is famous for its vibrant bazaar and traditional crafts. Local artisans continue to create beautiful handmade goods using centuries-old techniques.',
     alt: 'Bitola bazaar'
   },
@@ -40,7 +40,7 @@ const carouselItems: CarouselItem[] = [
     alt: 'Bitola culture'
   },
   {
-    image: '/images/bitola5.jpg',
+    image: '/images/bitola3.jpg',
     fact: 'The city celebrates numerous cultural festivals throughout the year, including the Bitola International Film Festival, attracting artists and film enthusiasts from around the world.',
     alt: 'Bitola festivals'
   }
