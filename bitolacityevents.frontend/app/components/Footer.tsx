@@ -70,7 +70,7 @@ export default function Footer() {
             <h4 className="font-semibold">Useful Links</h4>
             <ul className="mt-3 space-y-2 text-sm text-indigo-100">
               <li><Link className="hover:text-white" href="/">Home</Link></li>
-              <li><Link className="hover:text-white" href="/events">Events</Link></li>
+              <li><Link className="hover:text-white" href="/register">Sign Up</Link></li>
               <li><Link className="hover:text-white" href="/events">Explore Events</Link></li>
               <li><Link className="hover:text-white" href="#">Create Event</Link></li>
             </ul>
@@ -79,9 +79,9 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold">Contact</h4>
             <address className="not-italic mt-3 text-sm text-indigo-100">
-              <div>City Hall, Bitola</div>
               <div>Phone: <a className="hover:text-white" href="tel:+38970000000">+389 70 000 000</a></div>
               <div>Email: <a className="hover:text-white" href="mailto:info@bitolacityevents.mk">info@bitolacityevents.mk</a></div>
+              <div>Bitola, North Macedonia</div>
             </address>
           </div>
 
