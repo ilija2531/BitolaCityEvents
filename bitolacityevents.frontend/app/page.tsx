@@ -51,6 +51,24 @@ const transformStyles = [
 export default function Home() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -118,6 +136,19 @@ export default function Home() {
         
 
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-transparent via-indigo-300 to-transparent"></div>
+
+        {showScrollTop && (
+          <button
+            onClick={scrollToTop}
+            className="fixed bottom-8 right-8 p-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-full shadow-lg transition-all duration-300 z-40"
+            title="Scroll to top"
+            aria-label="Scroll to top"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <polyline points="18 15 12 9 6 15"></polyline>
+            </svg>
+          </button>
+        )}
       </main>
   )
 }

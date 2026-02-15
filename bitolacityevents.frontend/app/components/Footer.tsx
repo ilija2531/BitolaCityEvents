@@ -1,13 +1,44 @@
 "use client"
 
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 
 export default function Footer() {
   const year = new Date().getFullYear()
   const ref = useRef<HTMLElement | null>(null)
+  const [language, setLanguage] = useState<'EN' | 'MK'>('EN')
+  const [mounted, setMounted] = useState(false)
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const dropdownRef = useRef<HTMLDivElement | null>(null)
+
+  const toggleLanguage = (lang: 'EN' | 'MK') => {
+    setLanguage(lang)
+    localStorage.setItem('language', lang)
+    setIsDropdownOpen(false)
+  }
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false)
+      }
+    }
+
+    if (isDropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+      return () => document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [isDropdownOpen])
 
   useEffect(() => {
+    // Load language from localStorage
+    const savedLanguage = localStorage.getItem('language') as 'EN' | 'MK' | null
+    if (savedLanguage) {
+      setLanguage(savedLanguage)
+    }
+    setMounted(true)
+
     const node = ref.current
     if (!node || typeof window === 'undefined') return
 
@@ -88,8 +119,55 @@ export default function Footer() {
           {/* Subscribe section removed as requested */}
         </div>
 
-        <div className="mt-8 border-t border-black pt-6 text-sm text-indigo-100 text-center">
-          <p>&copy; {year} Bitola City Events. All rights reserved.</p>
+        <div className="mt-8 border-t border-black pt-6 text-sm text-indigo-100 relative">
+          <div className="flex items-center justify-center">
+            <p>&copy; {year} Bitola City Events. All rights reserved.</p>
+          </div>
+          {mounted && (
+            <div ref={dropdownRef} className="absolute top-6 right-35">
+              <button
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className="flex items-center gap-1.5 px-2 py-1.5 text-xs font-medium text-indigo-100 hover:text-white bg-white/10 hover:bg-white/20 border border-white/30 hover:border-white/50 rounded transition-all duration-200"
+                title="Choose language"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 2v20M2 12h20" strokeLinecap="round"/>
+                  <path d="M7 5c0 2.21 2.24 4 5 4s5-1.79 5-4M7 19c0-2.21 2.24-4 5-4s5 1.79 5 4" strokeLinecap="round"/>
+                  <ellipse cx="12" cy="12" rx="10" ry="3"/>
+                </svg>
+                <span>{language === 'EN' ? 'English' : 'Македонски'}</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={`transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`}>
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+
+              {isDropdownOpen && (
+                <div className="absolute bottom-full right-0 mb-1 bg-indigo-900 border border-white/30 rounded shadow-lg z-50 min-w-max">
+                  <button
+                    onClick={() => toggleLanguage('EN')}
+                    className={`w-full text-left px-4 py-2 text-xs font-medium transition-colors ${
+                      language === 'EN'
+                        ? 'bg-indigo-800 text-white'
+                        : 'text-indigo-100 hover:bg-indigo-800 hover:text-white'
+                    }`}
+                  >
+                    🇬🇧 English
+                  </button>
+                  <button
+                    onClick={() => toggleLanguage('MK')}
+                    className={`w-full text-left px-4 py-2 text-xs font-medium transition-colors ${
+                      language === 'MK'
+                        ? 'bg-indigo-800 text-white'
+                        : 'text-indigo-100 hover:bg-indigo-800 hover:text-white'
+                    }`}
+                  >
+                    🇲🇰 Македонски
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </footer>
