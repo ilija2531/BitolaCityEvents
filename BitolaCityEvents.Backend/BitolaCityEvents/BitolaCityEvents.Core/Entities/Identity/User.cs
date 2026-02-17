@@ -1,27 +1,32 @@
-﻿using BitolaCityEvents.Core.Entities.Identity.Common.Abstractions;
-using BitolaCityEvents.Core.Entities.Identity.Media;
+﻿using BitolaCityEvents.Core.Entities.Identity.Media;
 using BitolaCityEvents.Core.Entities.Joins;
+using Microsoft.AspNetCore.Identity;
 
 namespace BitolaCityEvents.Core.Entities.Identity
 {
-    public class User : Account
+    public class User : IdentityUser<Guid>
     {
         public User() : base()
         {
         }
 
-        public User(string username, string firstName, string lastName, AccountPhoto photo = null,
-            IEnumerable<UserSavedEvents> savedEvents = null, IEnumerable<UserGoingEvents> goingEvents = null)
-            : base(username, photo)
+        public User(string username, string firstName, string lastName, UserPhoto photo = null,
+            IEnumerable<Event> events = null, IEnumerable<UserSavedEvents> savedEvents = null, 
+            IEnumerable<UserGoingEvents> goingEvents = null)
+            : base(username)
         {
             FirstName = firstName;
             LastName = lastName;
+            Photo = photo;
+            Events = events;
             SavedEvents = savedEvents;
             GoingEvents = goingEvents;
         }
 
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public UserPhoto Photo { get; set; }
+        public IEnumerable<Event> Events { get; set; }
         public IEnumerable<UserSavedEvents> SavedEvents { get; set; }
         public IEnumerable<UserGoingEvents> GoingEvents { get; set; }
     }

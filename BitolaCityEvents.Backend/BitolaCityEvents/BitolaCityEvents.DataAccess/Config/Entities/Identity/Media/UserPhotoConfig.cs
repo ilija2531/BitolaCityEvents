@@ -5,17 +5,17 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace BitolaCityEvents.DataAccess.Config.Entities.Identity.Media
 {
-    public class AccountPhotoConfig : BaseConfig<AccountPhoto>
+    public class UserPhotoConfig : BaseConfig<UserPhoto>
     {
-        public override void Configure(EntityTypeBuilder<AccountPhoto> builder)
+        public override void Configure(EntityTypeBuilder<UserPhoto> builder)
         {
             base.Configure(builder);
 
             builder.Property(p => p.Path).IsRequired();
 
-            builder.HasOne(ac => ac.Account)
+            builder.HasOne(ac => ac.User)
                 .WithOne(p => p.Photo)
-                .HasForeignKey<AccountPhoto>(fk => fk.AccountId)
+                .HasForeignKey<UserPhoto>(fk => fk.UserId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Cascade);
         }

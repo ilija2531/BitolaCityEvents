@@ -1,5 +1,4 @@
 ﻿using BitolaCityEvents.Core.Entities.Identity;
-using BitolaCityEvents.Core.Entities.Identity.Common.Abstractions;
 using BitolaCityEvents.DataAccess.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -13,6 +12,14 @@ namespace BitolaCityEvents.API.Extensions
         public static IServiceCollection AddIdentityServices(this IServiceCollection services,
             IConfiguration config)
         {
+            services.AddIdentityCore<User>()
+                .AddRoleManager<RoleManager<IdentityRole>>()
+                .AddRoles<IdentityRole>()
+                .AddUserManager<UserManager<User>>()
+                .AddSignInManager<SignInManager<User>>()
+                .AddEntityFrameworkStores<BitolaCityEventsDbContext>()
+                .AddDefaultTokenProviders();
+
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -33,12 +40,7 @@ namespace BitolaCityEvents.API.Extensions
                 });
 
             services.AddAuthorization();
-            services.AddIdentity<Account, IdentityRole>()
-                .AddUserManager<UserManager<User>>()
-                .AddSignInManager<SignInManager<User>>()
-                .AddEntityFrameworkStores<BitolaCityEventsDbContext>()
-                .AddDefaultTokenProviders();
-                
+            
             return services;
         }
     }

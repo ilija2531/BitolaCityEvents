@@ -23,9 +23,9 @@ namespace BitolaCityEvents.DataAccess.Config.Entities
             builder.Property(p => p.PostedOn).IsRequired();
             builder.Property(p => p.Status).HasDefaultValue(EventStatus.NotStarted).HasConversion<string>().IsRequired();
 
-            builder.HasOne(o => o.Organizator)
+            builder.HasOne(u => u.User)
                 .WithMany(e => e.Events)
-                .HasForeignKey(fk => fk.OrganizatorId)
+                .HasForeignKey(fk => fk.UserId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Cascade);
         }

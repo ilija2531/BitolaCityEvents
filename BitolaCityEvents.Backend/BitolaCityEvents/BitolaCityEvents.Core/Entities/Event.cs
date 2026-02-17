@@ -13,7 +13,7 @@ namespace BitolaCityEvents.Core.Entities
         }
 
         public Event(Guid id, string title, string description, string category, string location, DateTime startTime, DateTime endTime, 
-            Guid organizatorId, Organizator organizator = null, EventStatus status = EventStatus.NotStarted, 
+            Guid userId, User user = null, EventStatus status = EventStatus.NotStarted, 
             IEnumerable<EventPhoto> photos = null, IEnumerable<UserSavedEvents> userSaves = null, 
             IEnumerable<UserGoingEvents> usersGoing = null)
             : base(id)
@@ -25,8 +25,8 @@ namespace BitolaCityEvents.Core.Entities
             StartTime = startTime;
             EndTime = endTime;
             PostedOn = DateTime.UtcNow;
-            OrganizatorId = organizatorId;
-            Organizator = organizator;
+            UserId = userId;
+            User = user;
             Status = status;
             Photos = photos;
             UserSaves = userSaves;
@@ -40,8 +40,8 @@ namespace BitolaCityEvents.Core.Entities
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public DateTime PostedOn { get; }
-        public Guid OrganizatorId { get; set; }
-        public Organizator Organizator { get; set; }
+        public Guid UserId { get; set; }
+        public User User { get; set; }
         public EventStatus Status { get; set; }
         public IEnumerable<EventPhoto> Photos { get; set; }
         public IEnumerable<UserSavedEvents> UserSaves { get; set; }

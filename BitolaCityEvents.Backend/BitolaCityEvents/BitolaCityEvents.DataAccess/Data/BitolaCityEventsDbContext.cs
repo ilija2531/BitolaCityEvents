@@ -1,5 +1,5 @@
 ﻿using BitolaCityEvents.Core.Entities;
-using BitolaCityEvents.Core.Entities.Identity.Common.Abstractions;
+using BitolaCityEvents.Core.Entities.Identity;
 using BitolaCityEvents.Core.Entities.Identity.Media;
 using BitolaCityEvents.Core.Entities.Joins;
 using BitolaCityEvents.Core.Entities.Media;
@@ -10,7 +10,7 @@ using System.Reflection;
 
 namespace BitolaCityEvents.DataAccess.Data
 {
-    public class BitolaCityEventsDbContext : IdentityDbContext<Account, IdentityRole<Guid>, Guid,
+    public class BitolaCityEventsDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid,
         IdentityUserClaim<Guid>, IdentityUserRole<Guid>, IdentityUserLogin<Guid>, IdentityRoleClaim<Guid>,
         IdentityUserToken<Guid>>
     {
@@ -20,7 +20,7 @@ namespace BitolaCityEvents.DataAccess.Data
 
         public DbSet<Event> Events { get; set; }
         public DbSet<EventPhoto> EventPhotos { get; set; }
-        public DbSet<AccountPhoto> AccountPhotos { get; set; }
+        public DbSet<UserPhoto> UserPhotos { get; set; }
         public DbSet<UserGoingEvents> UserGoingEvents { get; set; }
         public DbSet<UserSavedEvents> UserSavedEvents { get; set; }
 
@@ -28,13 +28,12 @@ namespace BitolaCityEvents.DataAccess.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Account>().UseTpcMappingStrategy();
             modelBuilder.Entity<IdentityRole>().ToTable("Roles");
-            modelBuilder.Entity<IdentityUserRole<string>>().ToTable("AccountRoles");
-            modelBuilder.Entity<IdentityUserClaim<string>>().ToTable("AccountClaims");
-            modelBuilder.Entity<IdentityUserLogin<string>>().ToTable("AccountLogins");
-            modelBuilder.Entity<IdentityRoleClaim<string>>().ToTable("AccountClaims");
-            modelBuilder.Entity<IdentityUserToken<string>>().ToTable("AccountTokens");
+            modelBuilder.Entity<IdentityUserRole<string>>().ToTable("UserRoles");
+            modelBuilder.Entity<IdentityUserClaim<string>>().ToTable("UserClaims");
+            modelBuilder.Entity<IdentityUserLogin<string>>().ToTable("UserLogins");
+            modelBuilder.Entity<IdentityRoleClaim<string>>().ToTable("UserClaims");
+            modelBuilder.Entity<IdentityUserToken<string>>().ToTable("UserTokens");
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
 
