@@ -1,19 +1,18 @@
 "use client"
 
 import React, { useEffect, useRef, useState } from 'react'
+import { useLanguage } from '../providers/LanguageProvider'
 import Link from 'next/link'
 
 export default function Footer() {
   const year = new Date().getFullYear()
   const ref = useRef<HTMLElement | null>(null)
-  const [language, setLanguage] = useState<'EN' | 'MK'>('EN')
-  const [mounted, setMounted] = useState(false)
+  const { language, setLanguage, t } = useLanguage()
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement | null>(null)
 
   const toggleLanguage = (lang: 'EN' | 'MK') => {
     setLanguage(lang)
-    localStorage.setItem('language', lang)
     setIsDropdownOpen(false)
   }
 
@@ -32,17 +31,9 @@ export default function Footer() {
   }, [isDropdownOpen])
 
   useEffect(() => {
-    // Load language from localStorage
-    const savedLanguage = localStorage.getItem('language') as 'EN' | 'MK' | null
-    if (savedLanguage) {
-      setLanguage(savedLanguage)
-    }
-    setMounted(true)
-
     const node = ref.current
     if (!node || typeof window === 'undefined') return
 
-    // immediate check in case footer is already visible
     const check = () => {
       const rect = node.getBoundingClientRect()
       const inView = rect.top < window.innerHeight && rect.bottom >= 0
@@ -79,8 +70,8 @@ export default function Footer() {
           <img src="/images/logo.png" alt="Bitolacity Events Logo" className="w-90 h-50 object-contain absolute left-0 top-1/2 -translate-y-1/2 -translate-x-80 z-20" />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center text-center">
           <div>
-            <h3 className="text-2xl font-semibold">Bitola City Events</h3>
-            <p className="mt-3 text-sm text-indigo-100">Discover events, meet people, and celebrate the spirit of Bitola. Concerts, festivals, exhibitions and more — all in one place.</p>
+            <h3 className="text-2xl font-semibold">{t('footer.title')}</h3>
+            <p className="mt-3 text-sm text-indigo-100">{t('footer.description')}</p>
             <div className="flex gap-3 mt-4 justify-center" aria-label="Social media links">
               <a href="#" aria-label="Facebook" className="hover:text-blue-400 transition-colors" title="Facebook">
                 <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22 12.07C22 6.48 17.52 2 11.93 2S2 6.48 2 12.07c0 4.99 3.66 9.13 8.44 9.93v-7.03H8.08v-2.9h2.36V9.41c0-2.33 1.39-3.61 3.52-3.61.99 0 2.03.18 2.03.18v2.23h-1.14c-1.13 0-1.48.7-1.48 1.42v1.71h2.52l-.4 2.9h-2.12v7.03C18.34 21.2 22 17.06 22 12.07z"/></svg>
@@ -98,21 +89,21 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold">Useful Links</h4>
+            <h4 className="font-semibold">{t('footer.usefulLinks') ?? 'Useful Links'}</h4>
             <ul className="mt-3 space-y-2 text-sm text-indigo-100">
-              <li><Link className="hover:text-white" href="/">Home</Link></li>
-              <li><Link className="hover:text-white" href="/register">Sign Up</Link></li>
-              <li><Link className="hover:text-white" href="/events">Explore Events</Link></li>
-              <li><Link className="hover:text-white" href="#">Create Event</Link></li>
+              <li><Link className="hover:text-white" href="/">{t('nav.home')}</Link></li>
+              <li><Link className="hover:text-white" href="/register">{t('nav.register')}</Link></li>
+              <li><Link className="hover:text-white" href="/events">{t('buttons.explore')}</Link></li>
+              <li><Link className="hover:text-white" href="#">{t('nav.create')}</Link></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-semibold">Contact</h4>
+            <h4 className="font-semibold">{t('footer.contact') ?? 'Contact'}</h4>
             <address className="not-italic mt-3 text-sm text-indigo-100">
-              <div>Phone: <a className="hover:text-white" href="tel:+38970000000">+389 70 000 000</a></div>
-              <div>Email: <a className="hover:text-white" href="mailto:info@bitolacityevents.mk">info@bitolacityevents.mk</a></div>
-              <div>Bitola, North Macedonia</div>
+              <div>{t('footer.phone')}: <a className="hover:text-white" href={`tel:${t('contact.phone')}`}>{t('contact.phone')}</a></div>
+              <div>{t('footer.email')}: <a className="hover:text-white" href={`mailto:${t('contact.email')}`}>{t('contact.email')}</a></div>
+              <div>{t('footer.location')}</div>
             </address>
           </div>
 
@@ -121,13 +112,12 @@ export default function Footer() {
 
         <div className="mt-8 border-t border-black pt-6 text-sm text-indigo-100 relative">
           <div className="flex items-center justify-center">
-            <p>&copy; {year} Bitola City Events. All rights reserved.</p>
+            <p>&copy; {year} Bitola City Events. {t('footer.copyright')}</p>
           </div>
-          {mounted && (
             <div ref={dropdownRef} className="absolute top-6 right-35">
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="flex items-center gap-1.5 px-2 py-1.5 text-xs font-medium text-indigo-100 hover:text-white bg-white/10 hover:bg-white/20 border border-white/30 hover:border-white/50 rounded transition-all duration-200"
+                className="flex items-center gap-1.5 px-2 py-1.5 text-xs font-medium text-indigo-100 hover:text-white bg-white/10 hover:bg-white/20 border border-white/60 hover:border-white/50 rounded transition-all duration-200"
                 title="Choose language"
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" xmlns="http://www.w3.org/2000/svg">
@@ -143,31 +133,32 @@ export default function Footer() {
               </button>
 
               {isDropdownOpen && (
-                <div className="absolute bottom-full right-0 mb-1 bg-indigo-900 border border-white/30 rounded shadow-lg z-50 min-w-max">
-                  <button
-                    onClick={() => toggleLanguage('EN')}
-                    className={`w-full text-left px-4 py-2 text-xs font-medium transition-colors ${
-                      language === 'EN'
-                        ? 'bg-indigo-800 text-white'
-                        : 'text-indigo-100 hover:bg-indigo-800 hover:text-white'
-                    }`}
-                  >
-                    🇬🇧 English
-                  </button>
-                  <button
-                    onClick={() => toggleLanguage('MK')}
-                    className={`w-full text-left px-4 py-2 text-xs font-medium transition-colors ${
-                      language === 'MK'
-                        ? 'bg-indigo-800 text-white'
-                        : 'text-indigo-100 hover:bg-indigo-800 hover:text-white'
-                    }`}
-                  >
-                    🇲🇰 Македонски
-                  </button>
+                <div className="absolute bottom-full right-0 mb-2 bg-indigo-900/75 backdrop-blur-sm border border-white/20 ring-1 ring-white/10 rounded-lg shadow-xl z-50 min-w-max overflow-hidden">
+                  <div className="divide-y divide-white/10">
+                    <button
+                      onClick={() => toggleLanguage('EN')}
+                      className={`w-full text-left px-4 py-2 text-xs font-medium transition-colors ${
+                        language === 'EN'
+                          ? 'bg-indigo-800/60 text-white'
+                          : 'text-indigo-100 hover:bg-indigo-800/60 hover:text-white'
+                      } focus:outline-none focus:bg-indigo-800/70`}
+                    >
+                      🇬🇧 English
+                    </button>
+                    <button
+                      onClick={() => toggleLanguage('MK')}
+                      className={`w-full text-left px-4 py-2 text-xs font-medium transition-colors ${
+                        language === 'MK'
+                          ? 'bg-indigo-800/60 text-white'
+                          : 'text-indigo-100 hover:bg-indigo-800/60 hover:text-white'
+                      } focus:outline-none focus:bg-indigo-800/70`}
+                    >
+                      🇲🇰 Македонски
+                    </button>
+                  </div>
                 </div>
               )}
             </div>
-          )}
         </div>
       </div>
     </footer>

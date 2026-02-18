@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useEffect, useState } from 'react'
+import { useLanguage } from '../providers/LanguageProvider'
 import EventCard from '../components/EventCard'
 import Link from 'next/link'
 
@@ -16,8 +17,15 @@ export default function Events() {
   const [events, setEvents] = useState<EventType[] | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [selectedCategory, setSelectedCategory] = useState('All')
-  
-  const categories = ['All', 'Music', 'Food', 'Art', 'Sports', 'Technology']
+  const { t } = useLanguage()
+  const categories = [
+    t('categories.All'),
+    t('categories.Music'),
+    t('categories.Food'),
+    t('categories.Art'),
+    t('categories.Sports'),
+    t('categories.Technology'),
+  ]
 
   useEffect(() => {
     const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'
@@ -45,10 +53,10 @@ export default function Events() {
         {/* Header Section */}
         <div className="text-center mb-12">
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg animate-fade-in-down">
-            Events in Bitola
+            {t('events.title')}
           </h1>
           <p className="text-indigo-100 text-lg md:text-xl max-w-2xl mx-auto drop-shadow-md">
-            Explore and discover all upcoming events happening in our vibrant city
+            {t('events.subtitle')}
           </p>
         </div>
 
@@ -70,17 +78,17 @@ export default function Events() {
         </div>
 
         {/* Error State */}
-        {error && (
-          <div className="bg-red-500/20 border border-red-500 rounded-lg p-4 mb-8 text-red-100 text-center">
-            <p>Failed to load events: {error}</p>
-          </div>
-        )}
+          {error && (
+            <div className="bg-red-500/20 border border-red-500 rounded-lg p-4 mb-8 text-red-100 text-center">
+              <p>{t('events.failed')} {error}</p>
+            </div>
+          )}
 
         {/* Loading State */}
         {!events && !error && (
           <div className="text-center py-12">
             <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
-            <p className="text-white text-lg mt-4">Loading events...</p>
+            <p className="text-white text-lg mt-4">{t('events.loading')}</p>
           </div>
         )}
 
@@ -107,11 +115,11 @@ export default function Events() {
         {/* Empty State */}
         {events && events.length === 0 && (
           <div className="text-center py-16">
-            <p className="text-white text-2xl mb-4">No events found</p>
-            <p className="text-indigo-100 mb-8">Check back soon for upcoming events!</p>
+            <p className="text-white text-2xl mb-4">{t('events.noFound')}</p>
+            <p className="text-indigo-100 mb-8">{t('events.checkBack')}</p>
             <Link href="/">
               <button className="px-8 py-3 bg-white text-indigo-600 font-bold rounded-lg hover:bg-indigo-50 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
-                Back to Home
+                {t('events.backToHome')}
               </button>
             </Link>
           </div>

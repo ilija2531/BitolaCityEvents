@@ -1,6 +1,7 @@
-'use client';
+"use client";
 
 import { useState, useEffect, useRef } from 'react';
+import { useLanguage } from '../providers/LanguageProvider'
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface CarouselItem {
@@ -13,38 +14,14 @@ interface FactsCarouselProps {
   isVisible: boolean;
 }
 
-const carouselItems: CarouselItem[] = [
-  {
-    image: '/images/bitola6.jpg',
-    fact: 'Bitola is a city in Macedonia with a rich history and cultural heritage. Throughout the centuries, it has been influenced by various civilizations and has preserved its unique identity.',
-    alt: 'Bitola streets'
-  },
-  {
-    image: '/images/bitola7.jpg',
-    fact: 'Known as the "City of Consuls," Bitola was home to 18 consulates in the early 1900s, making it a major center of international trade and diplomacy.',
-    alt: 'Bitola architecture'
-  },
-  {
-    image: '/images/bitola2.jpg',
-    fact: 'Bitola has a long sporting tradition — home to clubs like FK Pelister, RK Pelister and hosts regional athletics and basketball events that bring the community together.',
-    alt: 'Bitola sports'
-  },
-  {
-    image: '/images/bitola8.jpg',
-    fact: 'Bitola is famous for its vibrant bazaar and traditional crafts. Local artisans continue to create beautiful handmade goods using centuries-old techniques.',
-    alt: 'Bitola bazaar'
-  },
-  {
-    image: '/images/bitola4.jpg',
-    fact: 'With its beautiful architecture, vibrant arts scene, and warm hospitality, Bitola offers a captivating experience for visitors seeking authentic cultural immersion.',
-    alt: 'Bitola culture'
-  },
-  {
-    image: '/images/bitola3.jpg',
-    fact: 'The city celebrates numerous cultural festivals throughout the year, including the Bitola International Film Festival, attracting artists and film enthusiasts from around the world.',
-    alt: 'Bitola festivals'
-  }
-];
+const baseCarouselItems = [
+  { image: '/images/bitola6.jpg', key: 'facts.0', alt: 'Bitola streets' },
+  { image: '/images/bitola7.jpg', key: 'facts.1', alt: 'Bitola architecture' },
+  { image: '/images/bitola2.jpg', key: 'facts.2', alt: 'Bitola sports' },
+  { image: '/images/bitola8.jpg', key: 'facts.3', alt: 'Bitola bazaar' },
+  { image: '/images/bitola4.jpg', key: 'facts.4', alt: 'Bitola culture' },
+  { image: '/images/bitola3.jpg', key: 'facts.5', alt: 'Bitola festivals' },
+]
 
 const useTypeEffect = (text: string, isVisible: boolean, speed: number = 30) => {
   const [displayedText, setDisplayedText] = useState('');
@@ -81,6 +58,9 @@ export default function FactsCarousel({ isVisible }: FactsCarouselProps) {
   const [autoScroll, setAutoScroll] = useState(true);
   const autoScrollTimeout = useRef<NodeJS.Timeout | null>(null);
   const inactivityTimeout = useRef<NodeJS.Timeout | null>(null);
+  const { t } = useLanguage()
+
+  const carouselItems: CarouselItem[] = baseCarouselItems.map((it) => ({ image: it.image, fact: t(it.key), alt: it.alt }))
 
   // Auto-scroll functionality
   useEffect(() => {

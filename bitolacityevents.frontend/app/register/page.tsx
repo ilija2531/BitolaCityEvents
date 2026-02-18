@@ -1,10 +1,12 @@
-'use client';
+"use client";
 
 import React, { useState } from 'react'
+import { useLanguage } from "../providers/LanguageProvider"
 
 export default function Register() {
   const [isLogin, setIsLogin] = useState(false);
   const [userRole, setUserRole] = useState('user');
+  const { t } = useLanguage()
 
   const roleImages: { [key: string]: string } = {
     user: '/images/user.jpg',
@@ -51,7 +53,7 @@ export default function Register() {
           {/* Header with Toggle */}
           <div className="bg-gradient-to-r from-indigo-500/20 to-purple-500/20 px-8 pt-8 pb-6">
             <h1 className="text-3xl font-bold text-white text-center mb-6">
-              {isLogin ? 'Welcome Back' : 'Join Us'}
+              {isLogin ? useLanguage().t('register.welcome') : useLanguage().t('register.join')}
             </h1>
 
             {/* Toggle Buttons */}
@@ -64,7 +66,7 @@ export default function Register() {
                     : 'text-white/60 hover:text-white'
                 }`}
               >
-                Sign Up
+                {useLanguage().t('nav.register')}
               </button>
               <button
                 onClick={() => setIsLogin(true)}
@@ -74,7 +76,7 @@ export default function Register() {
                     : 'text-white/60 hover:text-white'
                 }`}
               >
-                Login
+                {t('register.login')}
               </button>
             </div>
           </div>
@@ -87,7 +89,7 @@ export default function Register() {
                 {/* User Role Selection */}
                 <div className="space-y-2 animate-in fade-in duration-300">
                   <label className="block text-white/90 text-sm font-semibold mb-3">
-                    Select Your Role
+                    {t('register.role')}
                   </label>
                   <div className="flex gap-4">
                     <label className="flex items-center cursor-pointer">
@@ -100,7 +102,7 @@ export default function Register() {
                         className="w-4 h-4 cursor-pointer"
                       />
                       <img src="/images/user.png" alt="User Icon" className="w-4 h-4 ml-2" />
-                      <span className="ml-2 text-white/90 text-sm"> User</span>
+                      <span className="ml-2 text-white/90 text-sm">{t('register.role.user')}</span>
                     </label>
                     <label className="flex items-center cursor-pointer">
                       <input
@@ -112,7 +114,7 @@ export default function Register() {
                         className="w-4 h-4 cursor-pointer"
                       />
                       <img src="/images/organizer2.png" alt="Organizer Icon" className="w-4 h-4 ml-2" />
-                      <span className="ml-2 text-white/90 text-sm"> Organizer</span>
+                      <span className="ml-2 text-white/90 text-sm">{t('register.role.organizer')}</span>
                     </label>
                     <label className="flex items-center cursor-pointer">
                       <input
@@ -124,51 +126,51 @@ export default function Register() {
                         className="w-4 h-4 cursor-pointer"
                       />
                       <img src="/images/admin2.png" alt="Admin Icon" className="w-4 h-4 ml-2" />
-                      <span className="ml-2 text-white/90 text-sm"> Admin</span>
+                      <span className="ml-2 text-white/90 text-sm">{t('register.role.admin')}</span>
                     </label>
                   </div>
                 </div>
 
                 <div className="space-y-2 animate-in fade-in duration-300 delay-100">
                   <label className="block text-white/90 text-sm font-semibold">
-                    Username
+                    {t('register.username')}
                   </label>
                   <input
                     type="text"
-                    placeholder="Enter your username"
+                    placeholder={t('register.username.placeholder')}
                     className="w-full px-4 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-white/40 focus:bg-white/15 transition-all"
                   />
                 </div>
 
                 <div className="space-y-2 animate-in fade-in duration-300 delay-100">
                   <label className="block text-white/90 text-sm font-semibold">
-                    Email
+                    {t('register.email')}
                   </label>
                   <input
                     type="email"
-                    placeholder="Enter your email"
+                    placeholder={t('register.email.placeholder')}
                     className="w-full px-4 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-white/40 focus:bg-white/15 transition-all"
                   />
                 </div>
 
                 <div className="space-y-2 animate-in fade-in duration-300 delay-200">
                   <label className="block text-white/90 text-sm font-semibold">
-                    Password
+                    {t('register.password')}
                   </label>
                   <input
                     type="password"
-                    placeholder="Create a password"
+                    placeholder={t('register.password.create.placeholder')}
                     className="w-full px-4 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-white/40 focus:bg-white/15 transition-all"
                   />
                 </div>
 
                 <div className="space-y-2 animate-in fade-in duration-300 delay-300">
                   <label className="block text-white/90 text-sm font-semibold">
-                    Confirm Password
+                    {t('register.password.confirm')}
                   </label>
                   <input
                     type="password"
-                    placeholder="Confirm your password"
+                    placeholder={t('register.password.confirm.placeholder')}
                     className="w-full px-4 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-white/40 focus:bg-white/15 transition-all"
                   />
                 </div>
@@ -178,9 +180,9 @@ export default function Register() {
             {/* Login Fields */}
             {isLogin && (
               <>
-              <div className="space-y-2 animate-in fade-in duration-300">
+                <div className="space-y-2 animate-in fade-in duration-300">
                   <label className="block text-white/90 text-sm font-semibold mb-3">
-                    Select Your Role
+                    {t('register.role')}
                   </label>
                   <div className="flex gap-4">
                     <label className="flex items-center cursor-pointer">
@@ -193,7 +195,7 @@ export default function Register() {
                         className="w-4 h-4 cursor-pointer"
                       />
                       <img src="/images/user.png" alt="User Icon" className="w-4 h-4 ml-2" />
-                      <span className="ml-2 text-white/90 text-sm"> User</span>
+                      <span className="ml-2 text-white/90 text-sm">{t('register.role.user')}</span>
                     </label>
                     <label className="flex items-center cursor-pointer">
                       <input
@@ -205,7 +207,7 @@ export default function Register() {
                         className="w-4 h-4 cursor-pointer"
                       />
                       <img src="/images/organizer2.png" alt="Organizer Icon" className="w-4 h-4 ml-2" />
-                      <span className="ml-2 text-white/90 text-sm"> Organizer</span>
+                      <span className="ml-2 text-white/90 text-sm">{t('register.role.organizer')}</span>
                     </label>
                     <label className="flex items-center cursor-pointer">
                       <input
@@ -217,17 +219,17 @@ export default function Register() {
                         className="w-4 h-4 cursor-pointer"
                       />
                       <img src="/images/admin2.png" alt="Admin Icon" className="w-4 h-4 ml-2" />
-                      <span className="ml-2 text-white/90 text-sm"> Admin</span>
+                      <span className="ml-2 text-white/90 text-sm">{t('register.role.admin')}</span>
                     </label>
                   </div>
                 </div>
                 <div className="space-y-2 animate-in fade-in duration-300">
                   <label className="block text-white/90 text-sm font-semibold">
-                    Email or Username
+                    {t('register.login.emailOrUsername')}
                   </label>
                   <input
                     type="text"
-                    placeholder="Enter your email or username"
+                    placeholder={t('register.login.placeholder')}
                     className="w-full px-4 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-white/40 focus:bg-white/15 transition-all"
                   />
                 </div>
@@ -235,15 +237,15 @@ export default function Register() {
                 <div className="space-y-2 animate-in fade-in duration-300 delay-100">
                   <div className="flex items-center justify-between">
                     <label className="block text-white/90 text-sm font-semibold">
-                      Password
+                      {t('register.password')}
                     </label>
                     <a href="#" className="text-sm text-indigo-300 hover:text-indigo-200 transition-colors">
-                      Forgot?
+                      {t('register.forgot')}
                     </a>
                   </div>
                   <input
                     type="password"
-                    placeholder="Enter your password"
+                    placeholder={t('register.password.placeholder')}
                     className="w-full px-4 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-white/40 focus:bg-white/15 transition-all"
                   />
                 </div>
@@ -255,18 +257,18 @@ export default function Register() {
                     className="w-4 h-4 rounded border-white/20 bg-white/10 text-indigo-500 focus:ring-2 focus:ring-indigo-500"
                   />
                   <label htmlFor="remember" className="ml-2 text-sm text-white/80">
-                    Remember me
+                    {t('register.remember')}
                   </label>
                 </div>
               </>
             )}
 
             {/* Submit Button */}
-            <button
+              <button
               type="submit"
               className="w-full mt-8 py-3 px-4 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold hover:from-indigo-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 focus:ring-offset-indigo-900"
             >
-              {isLogin ? 'Sign In' : 'Create Account'}
+              {isLogin ? t('register.signin') : t('register.createAccount')}
             </button>
 
             {/* Divider */}
@@ -274,26 +276,26 @@ export default function Register() {
               <div className="absolute inset-0 flex items-center">
                 <div className="w-full border-t border-white/20"></div>
               </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white/5 text-white/60">Or continue with</span>
+                <div className="relative flex justify-center text-sm">
+                <span className="px-2 bg-white/5 text-white/60">{t('register.orContinue')}</span>
               </div>
             </div>
 
             {/* Social Buttons */}
             <div className="grid gap-4">
-              <button
+                <button
                 type="button"
                 className="py-2.5 px-4 rounded-lg bg-white/10 border border-white/20 text-white hover:bg-white/15 transition-all flex items-center justify-center gap-2 font-medium"
               >
                 <img src="/images/google.png" alt="Google Icon" className="w-5 h-5" />
-                Google
+                {t('auth.google')}
               </button>
               <button
                 type="button"
                 className="py-2.5 px-4 rounded-lg bg-white/10 border border-white/20 text-white hover:bg-white/15 transition-all flex items-center justify-center gap-2 font-medium"
               >
                 <img src="/images/facebook.png" alt="Facebook Icon" className="w-5 h-5" />  
-                Facebook
+                {t('auth.facebook')}
               </button>
             </div>
           </form>
@@ -302,9 +304,9 @@ export default function Register() {
         {/* Footer Text */}
         <div className="text-center mt-2 text-white/80">
           {!isLogin ? (
-            <p>Already have an account? <button onClick={() => setIsLogin(true)} className="text-indigo-300 hover:text-indigo-200 font-semibold transition-colors">Sign in</button></p>
+            <p>{t('register.already')} <button onClick={() => setIsLogin(true)} className="text-indigo-300 hover:text-indigo-200 font-semibold transition-colors">{t('register.signin')}</button></p>
           ) : (
-            <p>Don't have an account? <button onClick={() => setIsLogin(false)} className="text-indigo-300 hover:text-indigo-200 font-semibold transition-colors">Sign up</button></p>
+            <p>{t('register.noAccount')} <button onClick={() => setIsLogin(false)} className="text-indigo-300 hover:text-indigo-200 font-semibold transition-colors">{t('register.createAccount')}</button></p>
           )}
         </div> 
         </div>       

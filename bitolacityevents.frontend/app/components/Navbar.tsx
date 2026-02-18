@@ -1,9 +1,11 @@
-'use client'
+"use client"
 import Link from "next/link"
 import { useState } from "react"
+import { useLanguage } from '../providers/LanguageProvider'
 
 export default function Navbar() {
   const [searchQuery, setSearchQuery] = useState("")
+  const { t } = useLanguage()
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
@@ -23,9 +25,9 @@ export default function Navbar() {
           <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300 transform -skew-x-12 group-hover:skew-x-12"></div>
           
           {/* Button content */}
-          <span className="relative flex items-center gap-2">
+            <span className="relative flex items-center gap-2">
             <img src="/images/homeicon.png" alt="Home Icon" className="w-7 h-7" />
-            Home
+            {t('nav.home')}
           </span>
         </button>
         </Link>
@@ -35,9 +37,9 @@ export default function Navbar() {
           <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300 transform -skew-x-12 group-hover:skew-x-12"></div>
           
           {/* Button content */}
-          <span className="relative flex items-center gap-2">
+            <span className="relative flex items-center gap-2">
             <img src="/images/eventicon.png" alt="Events Icon" className="w-7 h-7" />
-            Events
+            {t('nav.events')}
           </span>
         </button>
         </Link>
@@ -48,7 +50,7 @@ export default function Navbar() {
         <div className="relative group">
           <input
             type="text"
-            placeholder="Search events..."
+            placeholder={t('search.placeholder')}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-80 px-6 py-2.5 rounded-full bg-white/20 border border-white/40 text-white placeholder-white/60 focus:outline-none focus:bg-white/30 focus:border-white/60 transition-all duration-300 shadow-lg group-hover:bg-white/25"
@@ -69,9 +71,9 @@ export default function Navbar() {
           <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300 transform -skew-x-12 group-hover:skew-x-12"></div>
           
           {/* Button content */}
-          <span className="relative flex items-center gap-2">
+            <span className="relative flex items-center gap-2">
             <img src="/images/signup.png" alt="Sign Up Icon" className="w-7 h-7" />
-            Sign Up
+            {t('nav.register')}
             <span className="group-hover:translate-x-1 transition-transform">→</span>
           </span>
         </button>
