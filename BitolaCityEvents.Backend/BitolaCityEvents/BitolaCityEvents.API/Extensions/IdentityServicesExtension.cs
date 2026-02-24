@@ -13,8 +13,6 @@ namespace BitolaCityEvents.API.Extensions
             IConfiguration config)
         {
             services.AddIdentityCore<User>()
-                .AddRoleManager<RoleManager<IdentityRole>>()
-                .AddRoles<IdentityRole>()
                 .AddUserManager<UserManager<User>>()
                 .AddSignInManager<SignInManager<User>>()
                 .AddEntityFrameworkStores<BitolaCityEventsDbContext>()
